@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+	<style>
+		p {
+			font-family: 標楷體;
+			font-weight: bold
+			font-color:	#592017;
+			font-size: 24;
+		}
+		img {
+			width: 200px;
+			height: 200px;
+		}
+	</style>
+	<title>範例</title>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script>
+	$(function(){
+		$.ajax({
+			url: "http://140.134.26.71:58080/web-prog/Hotels",
+			type: "GET",
+			datatype: "json",
+			success: function(data) {
+				var parser = JSON.parse(data);
+				var items = parser.Infos.Info;
+				var column = '';
+				var count = 0;
+				for(var i=0;i<items.length;i++) {		
+					var name = items[i].Name;
+					var imgURL = items[i].Picture1;
+					var URL = items[i].Website;
+					column = column+'<td><p>'+(i+1)+'.'+name+'</p><a href="'+URL+'"><img src="'+imgURL+'"></td>';
+					count++;
+					if(count==4) {	
+						$("#attractions").append('<tr>'+column+'</tr>');
+						column = '';
+						count = 0;
+					}
+				}
+			},
+			error: function() {
+			}
+		});
+	});
+	</script>
+	</head>
+	<body>
+		<table id="attractions">
+		</table>
+	</body>
+</html>
