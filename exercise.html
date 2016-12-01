@@ -31,7 +31,7 @@
 					var name = items[i].Name;
 					var imgURL = items[i].Picture1;
 					var URL = items[i].Website;
-					column = column+'<td><p>'+(i+1)+'.'+name+'</p><a href="'+URL+'"><img src="'+imgURL+'"></td>';
+					column = column+'<td><p>'+(i+1)+'.'+name+'</p><a target="_blank" href="'+URL+'"><img src="'+imgURL+'"></td>';
 					count++;
 					if(count==4) {	
 						$("#attractions").append('<tr>'+column+'</tr>');
